@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h4>Buscar Factura</h4>
+
+  <form [formGroup]="form" class="mb-3">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="tipoBusqueda" value="cliente" id="radioCliente" />
+      <label class="form-check-label" for="radioCliente">Por Cliente</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" formControlName="tipoBusqueda" value="numero" id="radioNumero" />
+      <label class="form-check-label" for="radioNumero">Por Número</label>
+    </div>
+
+    @switch (form.get('tipoBusqueda')?.value) {
+      @case ('cliente') {
+        <div class="mt-3">
+          <label>Cliente</label>
+            <select class="form-select" formControlName="clienteId">
+                <option [ngValue]="null">Seleccione cliente</option>
+                @for (c of clientes(); track c.clienteId) {
+                    <option [ngValue]="c.clienteId">{{ c.nombre }}</option>
+                }
+            </select>
+        </div>
+      }
+      @case ('numero') {
+        <div class="mt-3">
+          <label>Número de factura</label>
+          <input type="text" class="form-control" formControlName="numeroFactura" placeholder="Ej: F001" />
+        </div>
+      }
+    }
+
+    <button type="button" class="btn btn-primary mt-3" (click)="buscar()">Buscar</button>
+  </form>
+
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
+
+  @if (facturas().length > 0) {
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+            <th>Numero de Factura</th>
+            <th>Cliente</th>
+            <th>Fecha de Emisión</th>
+            <th>Total</th></tr>
+      </thead>
+      <tbody>
+        @for (f of facturas(); track f.facturaId) {
+          <tr>
+            <td>{{ f.numeroFactura }}</td>
+            <td>{{ f.cliente }}</td>
+            <td>{{ f.fechaCreacion }}</td>
+            <td>{{ f.total }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
