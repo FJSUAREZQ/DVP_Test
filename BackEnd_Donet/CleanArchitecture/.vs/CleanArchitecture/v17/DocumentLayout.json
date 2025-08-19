@@ -1,0 +1,62 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Tests\\DoublePartners\\BackEnd_Donet\\CleanArchitecture\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E369AAE4-192C-4D84-BF10-EF511A4A66BF}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\tests\\doublepartners\\backend_donet\\cleanarchitecture\\webapi\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E369AAE4-192C-4D84-BF10-EF511A4A66BF}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E369AAE4-192C-4D84-BF10-EF511A4A66BF}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\tests\\doublepartners\\backend_donet\\cleanarchitecture\\webapi\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E369AAE4-192C-4D84-BF10-EF511A4A66BF}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Tests\\DoublePartners\\BackEnd_Donet\\CleanArchitecture\\WebAPI\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Tests\\DoublePartners\\BackEnd_Donet\\CleanArchitecture\\WebAPI\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T19:25:16.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FacturasController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Tests\\DoublePartners\\BackEnd_Donet\\CleanArchitecture\\WebAPI\\Controllers\\FacturasController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Controllers\\FacturasController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Tests\\DoublePartners\\BackEnd_Donet\\CleanArchitecture\\WebAPI\\Controllers\\FacturasController.cs",
+              "RelativeToolTip": "WebAPI\\Controllers\\FacturasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T00:58:58.642Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+﻿
+@* Este componente hace llamados al API para obtener los datos *@
+
+@inject IJSRuntime JS //inyectar javascript, para escribir en la consola enre otras cosas
+
+@rendermode InteractiveServer // Modo de renderizado del componente. Para usar el evento de click en el botón, dotra forma es usar un formulario
+
+@inject HttpClient Http
+
+
+<h3>Componente que hace llamado API para obtener datos</h3>
+<h2>Productos</h2>
+
+<button @onclick="CargarProductos">Cargar Productos</button>
+
+
+
+@if (productos == null || productos.Count < 1)
+{
+    <p><em>Click the button to load products.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cod</th>
+                <th>Name</th>
+                <th>Desc</th>
+                <th>Fec</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in productos)
+            {
+                <tr>
+                    <td>@product.Codigo</td>
+                    <td>@product.NombreProducto</td>
+                    <td>@product.Descripcion</td>
+                    <td>@product.FechaVencimiento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@{/* --------------------------------------------------------------- */}
+@code {
+    // Lista de productos
+    private List<ProductoBlazor> productos = new List<ProductoBlazor>();
+
+    /// <summary>
+    /// metodo que se ejecuta al cargar el componente
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        try 
+        {
+
+            var _json = await Http.GetFromJsonAsync<ApiResponseBlazor<ProductoBlazor>>("http://localhost:5203/api/product/getall");
+
+
+            if (_json != null && _json.response != null)
+            {
+                productos = _json.response;
+            }
+
+
+            StateHasChanged(); // Forzar la actualización del componente
+        }
+        catch (Exception ex)
+        {
+            //Console.WriteLine($"Error al cargar productos: {ex.Message}");
+            await JS.InvokeVoidAsync("console.log", $"-- Error al cargar productos: {ex.Message}");//Escribir en la consola del browser
+        }
+    }
+
+
+    /// <summary>
+    /// Metodo que se ejecuta al hacer click en el boton
+    /// </summary>
+    /// <returns></returns>
+    private async Task CargarProductos()
+    {
+        try
+        {
+            var jsonResponse = await Http.GetStringAsync("http://localhost:5203/api/product/getall");
+            await JS.InvokeVoidAsync("console.log", $"-- Respuesta JSON: {jsonResponse}");//Escribir en la consola del browser
+
+
+
+            var _json = await Http.GetFromJsonAsync<ApiResponseBlazor<ProductoBlazor>>("http://localhost:5203/api/product/getall");
+
+            if (_json != null && _json.response != null)
+            {
+                productos = _json.response;
+            }
+
+            StateHasChanged(); // Forzar la actualización del componente
+        }
+        catch (Exception ex)
+        {
+            //Console.WriteLine($"Error al cargar productos: {ex.Message}");
+            await JS.InvokeVoidAsync("console.log", $"-- Error al cargar productos: {ex.Message}");//Escribir en la consola del browser
+        }
+
+    }
+
+
+    /// <summary>
+    /// Objeto que representa el producto. Debe coincidir con la clase que devuelve el API
+    /// </summary>
+    public class ProductoBlazor
+    {
+        public int Id { get; set; }
+
+        public string Codigo { get; set; } = null!;
+
+        public string NombreProducto { get; set; } = null!;
+
+        public string? Descripcion { get; set; }
+
+        public int Stock { get; set; }
+
+        public DateOnly? FechaVencimiento { get; set; }
+    }
+
+    /// <summary>
+    /// clase para reflejar la estructura del JSON recibido
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class ApiResponseBlazor<T>
+    {
+        //Estos nombres deben coincidir con los que devuelve el API
+        public string Message { get; set; } = null!; //mensaje de respuesta
+        public List<T> response { get; set; } = null!;//lista de productos
+    }
+}

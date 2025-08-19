@@ -1,0 +1,55 @@
+﻿@{/*Este componente usa la injeccion del servicio de productos*/}
+
+
+@using Application.Interfaces; @* Para usar la injeccion de dependencias ProductService *@
+@using static BlazorApp.Components.Pages.ComponenteAPI
+
+@inject IProductService ProductService
+
+
+
+
+<h3>Componete que hace Inject del servicio de ProductService</h3>
+<h2>Product List</h2>
+
+
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var product in products)
+        {
+            <li>@product.NombreProducto - @product.Descripcion - @product.FechaVencimiento</li>
+        }
+    </ul>
+}
+
+@{/* ----------------------------------------- */}
+@code {
+ 
+    private List<ProductoBlazor> products;
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+       var response = await ProductService.GetAllProductsAsync();
+
+        if (response != null)
+        {
+            products = response.Select(product => new ProductoBlazor
+                {
+                    Id = product.Id,
+                    Codigo = product.Codigo,
+                    NombreProducto = product.NombreProducto,
+                    Descripcion = product.Descripcion,
+                    Stock = product.Stock,
+                    FechaVencimiento = product.FechaVencimiento
+
+                }).ToList();
+        }
+    }
+}
