@@ -2,20 +2,20 @@
 
 Base de datos para sistema de facturaciÃ³n y gestiÃ³n de productos desarrollada en SQL Server.
 
-## ğŸ“‹ DescripciÃ³n
+## DescripciÃ³n
 
-LabDev es una base de datos diseÃ±ada para manejar un sistema de facturaciÃ³n que incluye gestiÃ³n de clientes, productos, usuarios y facturaciÃ³n. El sistema estÃ¡ estructurado con una arquitectura normalizada que permite el manejo eficiente de datos geogrÃ¡ficos, productos, usuarios con roles y facturaciÃ³n detallada.
+LabDev es una base de datos diseÃ±ada para manejar un sistema de facturaciÃ³n que incluye gestiÃ³n de clientes, productos, usuarios y facturaciÃ³n. El sistema estÃ¡ estructurado con una arquitectura normalizada que permite el manejo eficiente de datos geogrpificos, productos, usuarios con roles y facturaciÃ³n detallada.
 
-## ğŸ—ï¸?Arquitectura de la Base de Datos
+## Arquitectura de la Base de Datos
 
 ### Estructura Principal
 
-- **GestiÃ³n GeogrÃ¡fica**: Departamentos â†?Ciudades
-- **GestiÃ³n de Usuarios**: Roles â†?Usuarios
-- **GestiÃ³n Comercial**: Clientes â†?Productos â†?Facturas â†?FacturaDetalle
+- **GestiÃ³n GeogrÃ­fica**: Departamentos y Ciudades
+- **GestiÃ³n de Usuarios**: Roles y Usuarios
+- **GestiÃ³n Comercial**: Clientes, Productos, Facturas
 
 
-## ğŸ“Š Tablas del Sistema
+## Tablas del Sistema
 
 ### 1. **Departamentos**
 Gestiona los departamentos del paÃ­s.
@@ -41,7 +41,7 @@ Cabecera de facturaciÃ³n.
 ### 8. **FacturaDetalle**
 Detalle de productos por factura.
 
-## ğŸš€ InstalaciÃ³n y ConfiguraciÃ³n
+## InstalaciÃ³n y ConfiguraciÃ³n
 
 ### Requisitos Previos
 
@@ -59,21 +59,21 @@ Detalle de productos por factura.
 
 ### Usuario Developer (Opcional)
 
-El script incluye la creaciÃ³n automÃ¡tica de un usuario de desarrollo:
+El script incluye la creaciÃ³n automÃ­tica de un usuario de desarrollo:
 - **Login**: `developer`
 - **Password**: `abc123ABC`
 - **Permisos**: `db_owner` en la base de datos LabDev
 
-> âš ï¸ **Nota**: Este usuario es opcional y estÃ¡ pensado para entornos de desarrollo. 
+> **Nota**: Este usuario es opcional y estÃ¡ pensado para entornos de desarrollo. 
 > - Si ya tienes un usuario configurado, puedes comentar la secciÃ³n de creaciÃ³n del usuario
 > - En producciÃ³n, usa tu propio usuario con permisos especÃ­ficos
 > - El script verifica si el usuario ya existe antes de crearlo
 
-## ğŸ“ Datos Iniciales
+## Datos Iniciales
 
 El script incluye datos de ejemplo.
 
-## ğŸ”§ CaracterÃ­sticas TÃ©cnicas
+## CaracterÃ¡sticas TÃ©cnicas
 
 ### AuditorÃ­a
 Todas las tablas incluyen campos de auditorÃ­a:
@@ -84,18 +84,19 @@ Todas las tablas incluyen campos de auditorÃ­a:
 ### Validaciones
 - Precios no negativos
 - Cantidades positivas
-- Emails Ãºnicos
-- Nombres Ãºnicos donde corresponde
+- Emails
+- Nombres
+- Otros
 
-### Ãndices
+### Indices
 - `IX_Facturas_ClienteId`: OptimizaciÃ³n para consultas de facturas por cliente
 
 ### Tipos Personalizados
 - `FacturaDetalleType`: Para procedimientos almacenados con mÃºltiples detalles
 
-## ğŸ“¦ Procedimientos Almacenados
+## Procedimientos Almacenados
 
-El sistema incluye un conjunto completo de procedimientos almacenados para operaciones CRUD y de negocio:
+El sistema incluye un conjunto completo de procedimientos almacenados para operaciones de negocio:
 
 ### GestiÃ³n de Clientes
 - `dbo.SP_Clientes_Listar`: Lista todos los clientes activos
@@ -108,100 +109,91 @@ El sistema incluye un conjunto completo de procedimientos almacenados para opera
 - `dbo.SP_Factura_BuscarConDetalle`: Obtiene factura con su detalle
 - `dbo.SP_Factura_BuscarDetalleByNumFactura`: Detalle de factura por nÃºmero
 
-### GestiÃ³n de Productos
+### Gestiç±€n de Productos
 - `dbo.SP_Productos_Listar`: Lista todos los productos activos
 - `dbo.SP_Productos_ListarForCombos`: Lista productos para controles
-- `dbo.SP_Productos_ProductoById`: Obtiene producto especÃ­fico por ID
+- `dbo.SP_Productos_ProductoById`: Obtiene producto especèµ¤fico por ID
 
 ### CaracterÃ­sticas de los SPs
-- âœ?**Manejo de Transacciones**: Los SPs crÃ­ticos incluyen control transaccional
-- âœ?**Manejo de Errores**: Implementan `TRY-CATCH` para captura de excepciones
-- âœ?**Validaciones de Negocio**: Verifican integridad y reglas de negocio
-- âœ?**OptimizaciÃ³n**: Utilizan Ã­ndices y consultas optimizadas
-- âœ?**ParÃ¡metros Tipados**: Uso de tipos personalizados para operaciones complejas
+- **Manejo de Transacciones**: Los SPs crÃ­ticos incluyen control transaccional
+- **Manejo de Errores**: Implementan `TRY-CATCH` para captura de excepciones
+- **Validaciones de Negocio**: Verifican integridad y reglas de negocio
+- **OptimizaciÃ³n**: Utilizan Ã­ndices y consultas optimizadas
+- **ParÃ¡metros Tipados**: Uso de tipos personalizados para operaciones complejas
 
 
-## ğŸ—‘ï¸?GestiÃ³n del Usuario Developer
+## GestiÃ³n del Usuario Developer
 
 ### Omitir creaciÃ³n del usuario
 Si no necesitas el usuario `developer`, puedes omitir la respectiva secciÃ³n de la craciÃ³n dentro el script.
 
-## ğŸ“ˆ PrÃ³ximas Mejoras
+## PrÃ³ximas Mejoras
 
 - Triggers para actualizaciÃ³n automÃ¡tica de stock
 - Vistas para reportes frecuentes
-- Respaldos automÃ¡ticos
-- Ãndices adicionales para optimizaciÃ³n
+- Respaldos automèŠticos
+- Ã­ndices adicionales para optimizaciÃ³n
 - Logging de operaciones crÃ­ticas
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
-# DVP_TEST - Sistema de Facturaci¨®n API
+# DVP_TEST - Sistema de FacturaciÃ³n API
 
-API REST desarrollada en .NET 8 con Clean Architecture para la gesti¨®n de facturaci¨®n (Buscar y crear) del sistema LabDev.
+API REST desarrollada en .NET 8 con Clean Architecture para la gestiÃ³n de facturaciÃ³n (Buscar y crear) del sistema LabDev.
 
-## ?? Descripci¨®n
+## DescripciÃ³n
 
-DVP_TEST es una API RESTful que implementa un sistema de facturaci¨®n con arquitectura limpia, permitiendo la gesti¨®n de facturaci¨®n de manera eficiente y escalable.
+DVP_TEST es una API RESTful que implementa un sistema de facturaciÃ³n con arquitectura limpia, permitiendo la gestiÃ³n de facturaciÃ³n de manera eficiente y escalable.
 
-## ??? Arquitectura
+## Arquitectura
 
 El proyecto implementa **Clean Architecture** con las siguientes capas:
 
-```
 DVP_TEST/
-©À©¤©¤ DVP_TEST.Domain/          # Entidades de negocio y contratos
-©À©¤©¤ DVP_TEST.Application/     # L¨®gica de aplicaci¨®n y casos de uso
-©À©¤©¤ DVP_TEST.Infrastructure/  # Acceso a datos y servicios externos
-©¸©¤©¤ DVP_TEST.WebAPI/         # Controladores y configuraci¨®n API
-```
+- DVP_TEST.Domain/          # Entidades de negocio y contratos
+- DVP_TEST.Application/     # LÃ³gica de aplicaciÃ³n y casos de uso
+- DVP_TEST.Infrastructure/  # Acceso a datos y servicios externos
+- DVP_TEST.WebAPI/         # Controladores y configuraciÂ´pn API
 
 
-## ?? Caracter¨ªsticas T¨¦cnicas
+
+## CaracterÃ­sticas TÃ©cnicas
 
 ### Arquitectura y Patrones
-- Clean Architecture**: Separaci¨®n clara de responsabilidades
-- Repository Pattern**: Abstracci¨®n del acceso a datos
+- Clean Architecture**: SeparaciÃ³n clara de responsabilidades
+- Repository Pattern**: AbstracciÃ³n del acceso a datos
 - Dependency Injection**: IoC container nativo de .NET
-- ADO.NET**: Comunicaci¨®n directa con SQL Server
-- Data Annotations**: Validaci¨®n autom¨¢tica de DTOs
+- ADO.NET**: ComunicaciÃ³n directa con SQL Server
+- Data Annotations**: ValidaciÃ³n automÃ¡tica de DTOs
 
 ### Funcionalidades
-- Sistema de Facturaci¨®n**: Creaci¨®n y b¨²squeda de facturas
+- Sistema de FacturaciÃ³n**: CreaciÃ³n y bÃºsqueda de facturas
 - Manejo de Errores**: Respuestas estructuradas
 - CORS**: Configurado para desarrollo
 
-## ?? Estructura del Proyecto
+## Estructura del Proyecto
 
-### ?? Domain Layer
-```
+### Domain Layer
 Domain/
-©À©¤©¤ Entities/          # Entidades de negocio
-©À©¤©¤ Interfaces/        # Contratos de repositorios
-```
+- Entities/          # Entidades de negocio
+- Interfaces/        # Contratos de repositorios
 
-### ?? Application Layer
-```
+### Application Layer
 Application/
-©À©¤©¤ Services/         # Servicios de aplicaci¨®n
-©¸©¤©¤ Interfaces/       # Contratos de servicios
-```
+- Services/         # Servicios de aplicaciÃ³n
+- Interfaces/       # Contratos de servicios
 
-### ??? Infrastructure Layer
-```
+### Infrastructure Layer
 Infrastructure/
-©À©¤©¤ Repositories/     # Implementaci¨®n de repositorios
-```
+- Repositories/     # ImplementaciÃ³n de repositorios
 
-### ?? WebAPI Layer
-```
+### WebAPI Layer
 WebAPI/
-©À©¤©¤ Controllers/     # Controladores REST
-©À©¤©¤ DTOs/            # DTOs con Datanotation para validaci¨®n
-©À©¤©¤ Configuration/   # Configuraci¨®n de servicios
-©¸©¤©¤ Program.cs       # Punto de entrada
-```
+- Controllers/     # Controladores REST
+- DTOs/            # DTOs con Datanotation para validaciÃ³n
+- Configuration/   # ConfiguraciÃ³n de servicios
+- Program.cs       # Punto de entrada
 
-## ?? Endpoints Principales
+## Endpoints Principales
 
 ### Clientes
 ```
@@ -216,19 +208,19 @@ GET    /api/productos/buscar/{id}       # Obtener producto por ID
 
 ### Facturas
 ```
-GET    /api/facturas/buscarNumFactura/{numero}  # Buscar por n¨²mero
+GET    /api/facturas/buscarNumFactura/{numero}  # Buscar por nè¿†mero
 GET    /api/facturas/buscarClienteId/{id}       # Buscar por cliente
 POST   /api/facturas/crear                      # Crear factura
 ```
 
-## ?? Configuraci¨®n
+## ConfiguraciÃ³n
 
 ### Requisitos Previos
 - .NET 8 SDK
-- SQL Server (conexi¨®n a base de datos LabDev)
+- SQL Server (conexiÃ³n a base de datos LabDev)
 - Visual Studio 2022 o VS Code
  
-### Instalaci¨®n
+### InstalaciÃ³n
 
 1. **Clonar el repositorio**
    ```bash
@@ -241,7 +233,7 @@ POST   /api/facturas/crear                      # Crear factura
    dotnet restore
    ```
 
-3. **Configurar cadena de conexi¨®n**
+3. **Configurar cadena de conexiÃ³n**
    
    Editar `appsettings.json` en el proyecto WebAPI:
    ```json
@@ -252,23 +244,190 @@ POST   /api/facturas/crear                      # Crear factura
    }
    ```
 
-## ??? Validaciones
-Los DTOs incluyen validaciones autom¨¢ticas usando Data Annotations:
+## Validaciones
+Los DTOs incluyen validaciones automÃ¡ticas usando Data Annotations:
 
 
-## ?? Pr¨®ximas Mejoras
+## PrÃ³ximas Mejoras
 
-- Implementar autenticaci¨®n JWT
-- Implementar paginaci¨®n
-- Pruebas unitarias e integraci¨®n
+- Implementar autenticaciÃ³n JWT
+- Implementar paginaciÃ³n
+- Pruebas unitarias e integraciÃ³n
 
-## ?? Tecnolog¨ªas Utilizadas
+## Tecnologèµ¤as Utilizadas
 
 - **.NET 8**: Framework principal
 - **ADO.NET**: Acceso a datos
 - **SQL Server**: Base de datos
-- **Clean Architecture**: Patr¨®n arquitect¨®nico
-- **Repository Pattern**: Patr¨®n de acceso a datos
+- **Clean Architecture**: PatrÃ³n arquitectÃ³nico
+- **Repository Pattern**: PatrÃ³n de acceso a datos
 - **Data Annotations**: Validaciones
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+# DVP_TEST Frontend - Sistema de Facturacion
+
+Aplicacion web desarrollada en Angular 20 para la gestion de facturacion del sistema LabDev, implementando patrones de diseno modernos y arquitectura escalable.
+
+## Descripcion
+
+Frontend Angular que consume la API DVP_TEST para proporcionar una interfaz de usuario intuitiva para la creacion y busqueda de facturas.
+
+## Arquitectura
+
+El proyecto implementa una **arquitectura modular** con separacion clara de responsabilidades:
+
+```
+src/
+â”œâ”€â”€ app/
+â”‚   â”œâ”€â”€ core/                   # Funcionalidad central de la app
+â”‚   â”‚   â”œâ”€â”€ interceptors/       # Interceptores HTTP
+â”‚   â”œâ”€â”€ features/               # Modulos de funcionalidad
+â”‚   â”‚   â”œâ”€â”€ facturacion/        # Modulo de facturacion
+â”‚	â”‚       â”œâ”€â”€ CasosUso/       # Casos de uso para los diferentes procesos
+â”‚	â”‚       â”œâ”€â”€ Paginas/        # Paginas de componentes para Buscar y crear facturas
+â”‚	â”‚       â”œâ”€â”€ Servicios/      # Servicios y repositorios para el modulo de facturacion
+â”‚	â”‚       â””â”€â”€ Modelos/        # Modelos que representan las entidades involucradas 
+â”‚   â””â”€â”€ environments/           # Configuraciones de entorno (URL de APIs)
+```
+
+### Patrones Implementados
+- **Repository Pattern**: Abstraccion del acceso a datos
+- **Facade Pattern**: Simplificacion de interfaces complejas
+- **Dependency Injection**: IoC nativo de Angular
+- **Feature Modules**: Organizacion modular por funcionalidad
+
+## Caracteristicas Tecnicas
+
+### Framework y Version
+- **Angular 20**: Framework principal
+- **TypeScript**: Lenguaje de desarrollo
+- **RxJS**: Programacion reactiva
+- **Bootstrap**: UI Components (opcional)
+
+### Funcionalidades Principales
+- **Crear Facturas**: Interfaz completa para facturacion
+- **Buscar Facturas**: Busqueda por numero y filtros
+- **Gestion de Productos**: Catalogo y seleccion
+- **Manejo de Errores**: Interceptor global
+- **Responsive Design**: Adaptable a diferentes dispositivos
+
+## Estructura del Proyecto
+
+### Core Module
+```
+core/
+â”œâ”€â”€ interceptors/
+â”‚   â”œâ”€â”€ error.interceptor.ts          # Manejo global de errores
+
+```
+
+### Features Module
+```
+features/
+â”œâ”€â”€ facturacion/
+â”‚   â”œâ”€â”€ components/
+â”‚   â”‚   â”œâ”€â”€ crear-factura/           # Componente crear factura
+â”‚   â”‚   â”œâ”€â”€ buscar-factura/          # Componente buscar factura
+â”‚   â”‚   â””â”€â”€ detalle-factura/         # Componente detalle
+â”‚   â”œâ”€â”€ models/
+â”‚   â”‚   â”œâ”€â”€ factura.model.ts         # Modelo de factura
+â”‚   â”‚   â””â”€â”€ factura-detalle.model.ts # Modelo detalle
+â”‚   â”œâ”€â”€ services/
+â”‚   â”‚   â”œâ”€â”€ factura.service.ts       # Servicio de facturacion
+â”‚   â”‚   â””â”€â”€ factura.facade.ts        # Facade de facturacion
+â”‚   â”œâ”€â”€ repositories/
+â”‚   â”‚   â””â”€â”€ factura.repository.ts    # Repository de facturas
+â”‚   â””â”€â”€ facturacion.module.ts
+â”‚
+â”œâ”€â”€ clientes/
+â”‚   â”œâ”€â”€ components/
+â”‚   â”œâ”€â”€ models/
+â”‚   â”œâ”€â”€ services/
+â”‚   â””â”€â”€ repositories/
+â”‚
+â””â”€â”€ productos/
+    â”œâ”€â”€ components/
+    â”œâ”€â”€ models/
+    â”œâ”€â”€ services/
+    â””â”€â”€ repositories/
+```
+
+### Environments
+```
+environments/
+â”œâ”€â”€ environment.ts              # Desarrollo
+â”œâ”€â”€ environment.prod.ts         # Produccion
+```
+
+## Configuracion
+
+### Requisitos Previos
+- Node.js 18+ 
+- Angular CLI 20
+- NPM o Yarn
+
+### Instalacion
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd dvp-test-frontend
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
+
+3. **Configurar variables de entorno**
+   
+   Editar `src/environments/environment.ts`:
+   ```typescript
+   export const environment = {
+     production: false,
+     apiUrl: 'https://localhost:5001/api',
+     apiTimeout: 30000,
+     enableLogging: true
+   };
+   ```
+
+4. **Ejecutar la aplicacion**
+   ```bash
+   ng serve
+   # La app estara disponible en http://localhost:4200
+   ```
+
+
+## Funcionalidades de la AplicaciÃ³n
+
+### Crear Factura
+- Formulario reactivo con validaciones
+- Seleccion de cliente desde dropdown
+- Agregacion dinamica de productos
+- Calculo automatico de totales
+- Validacion de stock disponible
+
+### Buscar Factura
+- Busqueda por numero de factura
+- Busqueda por cliente
+
+
+
+## Proximas Mejoras
+
+- Implementar lazy loading completo
+- Anadir tests unitarios completos
+- CRUD completo para productos, clientes, facturas y usuasrios
+- Implementar sistema de autenticacion y autprizacion
+
+## Tecnologias Utilizadas
+
+- **Angular 20**: Framework principal
+- **TypeScript**: Lenguaje de programacion
+- **RxJS**: Programacion reactiva
+- **Angular CLI**: Herramientas de desarrollo
+- **SCSS**: Preprocesador CSS
+- **Angular Forms**: Formularios reactivos
+
